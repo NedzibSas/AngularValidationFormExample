@@ -1,0 +1,82 @@
+<form [formGroup]="profile" (ngSubmit)="onSubmit()">
+
+<label class="ml-4">
+    Username:
+    <input type="text" id="username" class="form-control" formControlName="username" required>
+</label>
+<br>
+<label *ngIf="profile.get('username').invalid && (profile.get('username').dirty || profile.get('username').touched)" class="alert alert-danger ml-4">
+  <label *ngIf="profile.get('username').hasError('required')">
+    Username is required.
+  </label>
+  <label *ngIf="profile.get('username').hasError('minlength')">
+    Username must be at least 4 characters long.
+  </label>
+</label>
+<p class="ml-4">
+  Value: {{ profile.value.username }}
+</p>
+
+
+<label class="ml-4">
+  Email:
+  <input type="text" id="email" class="form-control" formControlName="email" required>
+</label>
+<br>
+<label *ngIf="profile.get('email').invalid && (profile.get('email').dirty || profile.get('email').touched)" class="alert alert-danger ml-4">
+<label *ngIf="profile.get('email').hasError('required')">
+  Email is required.
+</label>
+<label *ngIf="profile.get('email').hasError('email')">
+  Email must be an Email.
+</label>
+</label>
+<p class="ml-4">
+Value: {{ profile.value.email }}
+</p>
+
+<label class="ml-4">
+  Id Number:
+  <input type="text" id="idnumber" class="form-control" formControlName="idnumber" required>
+</label>
+<br>
+<label *ngIf="profile.get('idnumber').invalid && (profile.get('idnumber').dirty || profile.get('idnumber').touched)" class="alert alert-danger ml-4">
+<label *ngIf="profile.get('idnumber').hasError('required')">
+  Id Number is required.
+</label>
+<label *ngIf="profile.get('idnumber').hasError('pattern')">
+  Id Number must be numerical.
+</label>
+</label>
+<p class="ml-4">
+Value: {{ profile.value.idnumber }}
+</p>
+
+
+<label class="ml-4">
+  Hour:
+  <input type="time" class="form-control" formControlName="hour" required>
+</label>
+<label *ngIf="profile.get('hour').invalid && (profile.get('hour').dirty || profile.get('hour').touched)" class="alert alert-danger ml-4">
+  <label *ngIf="profile.get('hour').hasError('required')">
+    Hour is required.
+  </label>
+  </label>
+  <p class="ml-4">
+  Value: {{ profile.value.hour }}
+  </p>
+
+</form>
+
+<br>
+<p>
+  Form Status: {{ profile.status }}
+</p>
+<br>
+<div *ngIf="profile.status=='VALID'">
+<button type="button" class="btn btn-primary ml-4" (click)="enviar()">Enviar</button>
+</div>
+<div *ngIf="profile.status=='INVALID'">
+  <button type="button" class="btn btn-secondary ml-4" (click)="enviar()">Enviar</button>
+</div>
+<br>
